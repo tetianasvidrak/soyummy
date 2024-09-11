@@ -1,0 +1,52 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import {
+  register,
+  login,
+  currentUser,
+  userSubscription,
+  userUpdateData,
+  logOut,
+  addToFavorites,
+  deleteFromFavorites,
+} from "./authOperations";
+
+const initialState = {
+  user: null,
+  token: null,
+  loading: "idle", // 'idle' | 'pending' | 'succeeded' | 'failed'
+  error: null,
+  isLoggedIn: false,
+};
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState,
+  extraReducers: (builder) => {
+    builder.addCase(register.pending, (state) => {
+      state.loading = "pending";
+    });
+    builder.addCase(register.fulfilled, (state, action) => {
+      state.user = action.payload.data.user;
+      state.token = action.payload.data.token;
+      state.loading = "succeeded";
+      state.error = null;
+      state.isLoggedIn = true;
+    });
+    builder.addCase(register.rejected, (state, action) => {
+      state.loading = "failed";
+      state.error = action.payload.error;
+    });
+  },
+});
+
+const persistConfig = {
+  key: "authentication",
+  storage,
+};
+
+export const persistedAuthReducer = persistReducer(
+  persistConfig,
+  authSlice.reducer
+);
