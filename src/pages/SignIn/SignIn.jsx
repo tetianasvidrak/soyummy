@@ -1,12 +1,24 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+import * as authOperations from "../../redux/auth/authOperations";
 
 import AuthForm from "../../components/AuthForm";
 
 import signUpImg from "../../assets/signUpImg.png";
 
 const SignIn = () => {
+  const [signInData, setSignInData] = useState({
+    email: "",
+    password: "",
+  });
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   const onSubmitSignInHandler = (data) => {
-    console.log(data);
+    setSignInData(data);
+    dispatch(authOperations.login({ ...signInData, ...data }));
   };
 
   return (
@@ -26,6 +38,7 @@ const SignIn = () => {
         </div>
         <div className="absolute bottom-0 z-0 h-[380px] w-full bg-cover bg-[url('./assets/bgAuthFloor.svg')]"></div>
       </div>
+      {isLoggedIn && <Navigate to="/" />}
     </>
   );
 };
