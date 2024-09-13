@@ -17,3 +17,18 @@ export const register = createAsyncThunk(
     }
   }
 );
+
+export const login = createAsyncThunk(
+  "auth/login",
+  async (userData, thunkAPI) => {
+    try {
+      const user = await fetchSignIn(userData);
+      setBearerToken(user.data.data.token);
+      return user.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({
+        error: error.response.data.message,
+      });
+    }
+  }
+);
