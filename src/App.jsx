@@ -5,12 +5,23 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Welcome from "./pages/Welcome";
 
+import SharedLayout from "./components/SharedLayout/SharedLayout";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import PublicRoute from "./components/PublicRoute/PublicRoute";
+
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Welcome />} />
-      <Route path="signup" element={<SignUp />} />
-      <Route path="signin" element={<SignIn />} />
+      <Route element={<PrivateRoute />}>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<div>Home</div>} />
+        </Route>
+      </Route>
+      <Route element={<PublicRoute />}>
+        <Route path="welcome" element={<Welcome />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="signin" element={<SignIn />} />
+      </Route>
     </Routes>
   );
 }
