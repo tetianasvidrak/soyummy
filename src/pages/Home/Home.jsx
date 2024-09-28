@@ -1,12 +1,34 @@
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+
+import { getMainRecipes } from "../../api/get-main-recipes";
 
 import Container from "../../components/Container/Container";
 import SearchForm from "../../components/SearchForm/SearchForm";
+import RecommendedMeals from "../../components/RecommendedMeals/RecommendedMeals";
+import ErrorInformation from "../../components/ErrorInformation/ErrorInformation";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import Icon from "../../components/Icon/Icon";
 
 import bgDish from "../../assets/bgHomePlate.png";
 
 const Home = () => {
+  const [recipes, setRecipes] = useState();
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [isTryAgainClicked, setIsTryAgainClicked] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
+    setIsTryAgainClicked(false);
+
+    getMainRecipes()
+      .then((res) => setRecipes(res.data.data.recipe))
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false));
+  }, [isTryAgainClicked]);
+
   const onChangeSearchRecipeHandler = (recipe) => {
     console.log(recipe);
   };
@@ -61,6 +83,32 @@ const Home = () => {
             <span className="absolute -bottom-40 right-0  bg-[url('./assets/bgArrowPlate.svg')] bg-right-top bg-no-repeat bg-auto h-64 w-64"></span>
           </div>
         </div>
+
+        {loading && <LoadingSpinner loadingMessage="Loading recipes..." />}
+
+        {error && <ErrorInformation errorMessage={error} />}
+
+        {recipes?.map((recipe, index) => (
+          <RecommendedMeals
+            key={index}
+            category={recipe.category}
+            recipes={recipe.recipes}
+          />
+        ))}
+
+        {error ? (
+          <button
+            className="btn-greenBorder w-64 mb-24"
+            type="button"
+            onClick={() => setIsTryAgainClicked(true)}
+          >
+            Try again
+          </button>
+        ) : (
+          <NavLink className="btn-greenBorder w-64 mb-24" to="/categories">
+            Other categories
+          </NavLink>
+        )}
       </Container>
     </>
   );
