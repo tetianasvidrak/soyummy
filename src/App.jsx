@@ -5,6 +5,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Welcome from "./pages/Welcome";
 import Home from "./pages/Home";
+import Categories from "./pages/Categories";
 
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
@@ -16,6 +17,7 @@ function App() {
       <Route element={<PrivateRoute />}>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
+          <Route path="categories" element={<Categories />} />
         </Route>
       </Route>
       <Route element={<PublicRoute />}>
