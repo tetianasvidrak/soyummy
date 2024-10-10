@@ -32,3 +32,31 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+export const addToFavorites = createAsyncThunk(
+  "auth/addToFavoriteRecipes",
+  async (id, thunkAPI) => {
+    try {
+      const res = await addFavoriteRecipe(id);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({
+        error: error.response.data.message,
+      });
+    }
+  }
+);
+
+export const deleteFromFavorites = createAsyncThunk(
+  "auth/deleteFromFavorites",
+  async (id, thunkAPI) => {
+    try {
+      const res = await deleteFavoriteRecipe(id);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({
+        error: error.response.data.message,
+      });
+    }
+  }
+);

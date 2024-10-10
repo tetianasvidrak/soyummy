@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore } from "redux-persist";
 import { persistedAuthReducer } from "./auth/auth-slice";
+import { persistedRecipeReducer } from "./recipe/recipe-slice";
 import {
   FLUSH,
   REHYDRATE,
@@ -13,6 +14,7 @@ import {
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    recipe: persistedRecipeReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

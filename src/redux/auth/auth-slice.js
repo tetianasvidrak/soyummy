@@ -42,6 +42,37 @@ const authSlice = createSlice({
     builder.addCase(login.rejected, (state, action) => {
       state.loading = "failed";
       state.error = action.payload.error;
+    }),
+      builder.addCase(addToFavorites.pending, (state) => {
+        state.loading = "pending";
+      });
+    builder.addCase(addToFavorites.fulfilled, (state, action) => {
+      state.user = {
+        ...state.user,
+        favorites: action.payload.data.user.favorites,
+      };
+      state.loading = "succeeded";
+      state.error = null;
+    });
+    builder.addCase(addToFavorites.rejected, (state, action) => {
+      state.loading = "failed";
+      state.error = action.payload.error;
+    });
+    builder.addCase(deleteFromFavorites.pending, (state) => {
+      state.loading = "pending";
+    });
+    builder.addCase(deleteFromFavorites.fulfilled, (state, action) => {
+      state.user = {
+        ...state.user,
+        favorites: action.payload.data.user.favorites,
+      };
+
+      state.loading = "succeeded";
+      state.error = null;
+    });
+    builder.addCase(deleteFromFavorites.rejected, (state, action) => {
+      state.loading = "failed";
+      state.error = action.payload.error;
     });
   },
 });
