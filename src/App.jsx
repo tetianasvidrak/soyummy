@@ -7,6 +7,7 @@ import Welcome from "./pages/Welcome";
 import Home from "./pages/Home";
 import Categories from "./pages/Categories";
 import Recipe from "./pages/Recipe";
+import Favorites from "./pages/Favorites";
 import ShoppingList from "./pages/ShoppingList";
 
 import SharedLayout from "./components/SharedLayout/SharedLayout";
@@ -21,6 +22,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="categories" element={<Categories />} />
           <Route path="recipe/:id" element={<Recipe />} />
+          <Route path="favorites" element={<Favorites />} />
           <Route path="shoppinglist" element={<ShoppingList />} />
         </Route>
       </Route>
