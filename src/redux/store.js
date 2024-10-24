@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore } from "redux-persist";
 import { persistedAuthReducer } from "./auth/auth-slice";
 import { persistedRecipeReducer } from "./recipe/recipe-slice";
+import { persistedRecipesReducer } from "./recipes/recipes-slice";
 import { persistedShoppingListReducer } from "./shoppingList/shoppingList-slice";
 import {
   FLUSH,
@@ -16,6 +17,7 @@ export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     recipe: persistedRecipeReducer,
+    recipes: persistedRecipesReducer,
     shoppingList: persistedShoppingListReducer,
   },
   middleware: (getDefaultMiddleware) =>
