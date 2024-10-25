@@ -1,6 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getFavoriteRecipes } from "./recipes-api";
 
+export const ownRecipe = createAsyncThunk(
+  "recipes/ownRecipe",
+  async (userRecipe, thunkAPI) => {
+    try {
+      const res = await fetchOwnRecipe(userRecipe);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({
+        error: error.response.data.message,
+      });
+    }
+  }
+);
+
 export const favoriteRecipes = createAsyncThunk(
   "recipes/favoriteRecipes",
   async (_, thunkAPI) => {
