@@ -5,6 +5,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Welcome from "./pages/Welcome";
 import Home from "./pages/Home";
+import AddRecipe from "./pages/AddRecipe";
 import Categories from "./pages/Categories";
 import Recipe from "./pages/Recipe";
 import Favorites from "./pages/Favorites";
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="categories" element={<Categories />} />
+          <Route path="addrecipe" element={<AddRecipe />} />
           <Route path="recipe/:id" element={<Recipe />} />
           <Route path="favorites" element={<Favorites />} />
           <Route path="shoppinglist" element={<ShoppingList />} />
