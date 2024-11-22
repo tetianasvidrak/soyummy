@@ -9,6 +9,8 @@ import Title from "../../components/Title";
 import AddRecipeDescription from "../../components/AddRecipeDescription/AddRecipeDescription";
 import AddRecipeIngredients from "../../components/AddRecipeIngredients/AddRecipeIngredients";
 import AddRecipePreparation from "../../components/AddRecipePreparation/AddRecipePreparation";
+import FollowUs from "../../components/FollowUs/FollowUs";
+import PopularRecipes from "../../components/PopularRecipes/PopularRecipes";
 
 const AddRecipe = () => {
   const methods = useForm({ mode: "onChange" });
@@ -68,6 +70,10 @@ const AddRecipe = () => {
             </button>
           </form>
         </FormProvider>
+        <aside>
+          <FollowUs />
+          <PopularRecipes />
+        </aside>
       </div>
     </div>
   );
