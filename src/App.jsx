@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import AddRecipe from "./pages/AddRecipe";
 import Categories from "./pages/Categories";
 import Recipe from "./pages/Recipe";
+import MyRecipes from "./pages/MyRecipes";
 import Favorites from "./pages/Favorites";
 import ShoppingList from "./pages/ShoppingList";
 
@@ -23,6 +24,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="categories" element={<Categories />} />
           <Route path="addrecipe" element={<AddRecipe />} />
+          <Route path="myrecipes" element={<MyRecipes />} />
           <Route path="recipe/:id" element={<Recipe />} />
           <Route path="favorites" element={<Favorites />} />
           <Route path="shoppinglist" element={<ShoppingList />} />
