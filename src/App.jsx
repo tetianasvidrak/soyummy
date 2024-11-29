@@ -11,6 +11,7 @@ import Recipe from "./pages/Recipe";
 import MyRecipes from "./pages/MyRecipes";
 import Favorites from "./pages/Favorites";
 import ShoppingList from "./pages/ShoppingList";
+import SearchRecipe from "./pages/SearchRecipe";
 
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
@@ -28,6 +29,7 @@ function App() {
           <Route path="recipe/:id" element={<Recipe />} />
           <Route path="favorites" element={<Favorites />} />
           <Route path="shoppinglist" element={<ShoppingList />} />
+          <Route path="searchrecipe" element={<SearchRecipe />} />
         </Route>
       </Route>
       <Route element={<PublicRoute />}>
