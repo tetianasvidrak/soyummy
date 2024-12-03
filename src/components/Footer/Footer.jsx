@@ -1,12 +1,15 @@
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 import Icon from "../Icon/Icon";
 import SocialMediaIcons from "../SocialMediaIcons/SocialMediaIcons";
 import Container from "../Container/Container";
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import Logo from "../../components/Logo/Logo";
 
 const Footer = () => {
   const { register, handleSubmit } = useForm();
+
   const onSubmitHandler = (data) => {
     console.log(data);
   };
@@ -28,7 +31,15 @@ const Footer = () => {
                 <li>Convenient and easy to use</li>
               </ul>
             </div>
-            <ul className="flex flex-col gap-5"></ul>
+            <ul className="flex flex-col gap-5">
+              <ScrollToTop>
+                <Link to="/categories">Ingredients</Link>
+                <Link to="/addrecipe">Add recipes</Link>
+                <Link to="/myrecipes">My recipes</Link>
+                <Link to="/favorites">Favorite</Link>
+                <Link to="/shoppinglist">Shopping list</Link>
+              </ScrollToTop>
+            </ul>
             <div className="w-[339px]">
               <div className="flex flex-col items-start gap-3.5 mb-7">
                 <h4 className="font-bold text-lg">
