@@ -33,6 +33,20 @@ export const login = createAsyncThunk(
   }
 );
 
+export const userUpdateData = createAsyncThunk(
+  "auth/userUpdateData",
+  async (userData, thunkAPI) => {
+    try {
+      const user = await fetchUpdateUserData(userData);
+      return user.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({
+        error: error.response.data.message,
+      });
+    }
+  }
+);
+
 export const addToFavorites = createAsyncThunk(
   "auth/addToFavoriteRecipes",
   async (id, thunkAPI) => {

@@ -43,9 +43,22 @@ const authSlice = createSlice({
       state.loading = "failed";
       state.error = action.payload.error;
     }),
-      builder.addCase(addToFavorites.pending, (state) => {
+      builder.addCase(userUpdateData.pending, (state) => {
         state.loading = "pending";
       });
+    builder.addCase(userUpdateData.fulfilled, (state, action) => {
+      state.user = action.payload.data.user;
+      state.loading = "succeeded";
+      state.error = null;
+      state.isLoggedIn = true;
+    });
+    builder.addCase(userUpdateData.rejected, (state, action) => {
+      state.loading = "failed";
+      state.error = action.payload.error;
+    });
+    builder.addCase(addToFavorites.pending, (state) => {
+      state.loading = "pending";
+    });
     builder.addCase(addToFavorites.fulfilled, (state, action) => {
       state.user = {
         ...state.user,
