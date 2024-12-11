@@ -1,7 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchAuth } from "./auth-api";
+import {
+  fetchAuth,
+  fetchSignIn,
+  fetchUpdateUserData,
+  fetchLogOut,
+} from "./auth-api";
 
 import { setBearerToken } from "../../axios/axios";
+
+import { addFavoriteRecipe, deleteFavoriteRecipe } from "../recipe/recipe-api";
 
 export const register = createAsyncThunk(
   "auth/register",
@@ -32,6 +39,17 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+export const logOut = createAsyncThunk("auth/logOut", async (_, thunkAPI) => {
+  try {
+    const user = await fetchLogOut();
+    return user.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue({
+      error: error.response.data.message,
+    });
+  }
+});
 
 export const userUpdateData = createAsyncThunk(
   "auth/userUpdateData",

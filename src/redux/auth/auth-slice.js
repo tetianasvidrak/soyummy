@@ -1,7 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { register, login } from "./authOperations";
+import {
+  register,
+  login,
+  userUpdateData,
+  logOut,
+  addToFavorites,
+  deleteFromFavorites,
+} from "./authOperations";
 
 const initialState = {
   user: null,
@@ -38,6 +45,20 @@ const authSlice = createSlice({
       state.loading = "succeeded";
       state.error = null;
       state.isLoggedIn = true;
+    });
+    builder.addCase(logOut.pending, (state) => {
+      state.loading = "pending";
+    });
+    builder.addCase(logOut.fulfilled, (state) => {
+      state.user = null;
+      state.loading = "succeeded";
+      state.error = null;
+      state.isLoggedIn = false;
+      state.token = null;
+    });
+    builder.addCase(logOut.rejected, (state, action) => {
+      state.loading = "failed";
+      state.error = action.payload.error;
     });
     builder.addCase(login.rejected, (state, action) => {
       state.loading = "failed";

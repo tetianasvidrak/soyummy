@@ -10,6 +10,11 @@ export async function fetchSignIn(data) {
   return response;
 }
 
+export async function fetchLogOut() {
+  const response = await axios.post("/users/logout");
+  return response;
+}
+
 export async function fetchUpdateUserData(data) {
   const response = await axios.patch("/users/avatars", data);
   return response;
