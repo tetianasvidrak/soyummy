@@ -1,11 +1,14 @@
+import { useSelector } from "react-redux";
 import { NavLink, useParams, useNavigate } from "react-router-dom";
 
 import Container from "../Container/Container";
+import HeaderUser from "../HeaderUser/HeaderUser";
 import Icon from "../Icon";
 
 import logo from "../../assets/icons/logo.svg";
 
 const Header = () => {
+  const { name, avatarURL } = useSelector((state) => state.auth.user);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -62,6 +65,9 @@ const Header = () => {
               />
             </NavLink>
           </ul>
+          <div className="flex items-center gap-12">
+            <HeaderUser name={name} avatar={avatarURL} />
+          </div>
         </div>
       </Container>
     </header>
