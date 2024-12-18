@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import Select from "react-select";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -7,7 +8,10 @@ import { getCategoryList } from "../../api/get-category-list";
 
 import AddRecipePhoto from "../AddRecipePhoto/AddRecipePhoto";
 
+import { customStyles } from "../../styles/selectStylesDarkMode";
+
 const AddRecipeDescription = () => {
+  const { isDarkMode } = useSelector((state) => state.darkMode);
   const {
     register,
     control,
@@ -95,7 +99,12 @@ const AddRecipeDescription = () => {
               rules={{ required: "Please select a category" }}
               render={({ field, fieldState }) => (
                 <div>
-                  <Select id="category" {...field} options={options} />
+                  <Select
+                    id="category"
+                    {...field}
+                    options={options}
+                    styles={customStyles(isDarkMode, "150px", fieldState.error)}
+                  />
                 </div>
               )}
             ></Controller>

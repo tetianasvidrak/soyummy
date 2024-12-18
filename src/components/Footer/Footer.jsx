@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
@@ -8,6 +9,7 @@ import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import Logo from "../../components/Logo/Logo";
 
 const Footer = () => {
+  const { isDarkMode } = useSelector((state) => state.darkMode);
   const { register, handleSubmit } = useForm();
 
   const onSubmitHandler = (data) => {
@@ -59,6 +61,9 @@ const Footer = () => {
                     stroke="currentColor"
                     size="6"
                     strokeWidth="2"
+                    additionalStyles={
+                      !isDarkMode && "group-focus-within:text-green"
+                    }
                   />
                   <input
                     className="bg-transparent focus:outline-none placeholder:text-white w-full"

@@ -4,6 +4,7 @@ import { persistedAuthReducer } from "./auth/auth-slice";
 import { persistedRecipeReducer } from "./recipe/recipe-slice";
 import { persistedRecipesReducer } from "./recipes/recipes-slice";
 import { persistedShoppingListReducer } from "./shoppingList/shoppingList-slice";
+import { persistedDarkModeReducer } from "./darkMode/darkMode-slice";
 import {
   FLUSH,
   REHYDRATE,
@@ -19,6 +20,7 @@ export const store = configureStore({
     recipe: persistedRecipeReducer,
     recipes: persistedRecipesReducer,
     shoppingList: persistedShoppingListReducer,
+    darkMode: persistedDarkModeReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

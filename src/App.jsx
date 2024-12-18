@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
@@ -18,26 +19,29 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import PublicRoute from "./components/PublicRoute/PublicRoute";
 
 function App() {
+  const { isDarkMode } = useSelector((state) => state.darkMode);
   return (
-    <Routes>
-      <Route element={<PrivateRoute />}>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          <Route path="categories" element={<Categories />} />
-          <Route path="addrecipe" element={<AddRecipe />} />
-          <Route path="myrecipes" element={<MyRecipes />} />
-          <Route path="recipe/:id" element={<Recipe />} />
-          <Route path="favorites" element={<Favorites />} />
-          <Route path="shoppinglist" element={<ShoppingList />} />
-          <Route path="searchrecipe" element={<SearchRecipe />} />
+    <div className={isDarkMode ? "dark font-poppins" : "font-poppins"}>
+      <Routes>
+        <Route element={<PrivateRoute />}>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />} />
+            <Route path="categories" element={<Categories />} />
+            <Route path="addrecipe" element={<AddRecipe />} />
+            <Route path="myrecipes" element={<MyRecipes />} />
+            <Route path="recipe/:id" element={<Recipe />} />
+            <Route path="favorites" element={<Favorites />} />
+            <Route path="shoppinglist" element={<ShoppingList />} />
+            <Route path="searchrecipe" element={<SearchRecipe />} />
+          </Route>
         </Route>
-      </Route>
-      <Route element={<PublicRoute />}>
-        <Route path="welcome" element={<Welcome />} />
-        <Route path="signup" element={<SignUp />} />
-        <Route path="signin" element={<SignIn />} />
-      </Route>
-    </Routes>
+        <Route element={<PublicRoute />}>
+          <Route path="welcome" element={<Welcome />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="signin" element={<SignIn />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 

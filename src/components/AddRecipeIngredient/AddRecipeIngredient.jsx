@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import Select from "react-select";
+import { useSelector } from "react-redux";
 import { Controller, useFormContext } from "react-hook-form";
 
 import Icon from "../Icon";
+
+import { customStyles } from "../../styles/selectStylesDarkMode";
 
 const AddRecipeIngredient = ({
   index,
@@ -17,6 +20,8 @@ const AddRecipeIngredient = ({
     formState: { errors },
   } = useFormContext();
 
+  const { isDarkMode } = useSelector((state) => state.darkMode);
+
   return (
     <div className="flex gap-[32px] mb-[24px]">
       <label className="flex items-start gap-4 w-[398px]">
@@ -26,7 +31,12 @@ const AddRecipeIngredient = ({
           rules={{ required: "Please select ingredient" }}
           render={({ field, fieldState }) => (
             <div className="relative">
-              <Select id="ingredient" {...field} options={ingredientsOptions} />
+              <Select
+                id="ingredient"
+                {...field}
+                options={ingredientsOptions}
+                styles={customStyles(isDarkMode, "450px", fieldState.error)}
+              />
               {errors.ingredient?.[index] && (
                 <p
                   className={`absolute left-0 bottom-[-20px] text-xs text-error`}
