@@ -2,12 +2,14 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
+import { setBearerToken } from "./axios/axios";
+
 import Welcome from "./pages/Welcome";
-import Home from "./pages/Home";
-import AddRecipe from "./pages/AddRecipe";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn/SignIn";
+import Home from "./pages/Home/Home";
 import Categories from "./pages/Categories";
+import AddRecipe from "./pages/AddRecipe";
 import Recipe from "./pages/Recipe";
 import MyRecipes from "./pages/MyRecipes";
 import Favorites from "./pages/Favorites";
@@ -20,6 +22,12 @@ import PublicRoute from "./components/PublicRoute/PublicRoute";
 
 function App() {
   const { isDarkMode } = useSelector((state) => state.darkMode);
+  const token = useSelector((state) => state.auth.token);
+
+  if (token) {
+    setBearerToken(token);
+  }
+
   return (
     <div className={isDarkMode ? "dark font-poppins" : "font-poppins"}>
       <Routes>
@@ -28,8 +36,8 @@ function App() {
             <Route index element={<Home />} />
             <Route path="categories" element={<Categories />} />
             <Route path="addrecipe" element={<AddRecipe />} />
-            <Route path="myrecipes" element={<MyRecipes />} />
             <Route path="recipe/:id" element={<Recipe />} />
+            <Route path="myrecipes" element={<MyRecipes />} />
             <Route path="favorites" element={<Favorites />} />
             <Route path="shoppinglist" element={<ShoppingList />} />
             <Route path="searchrecipe" element={<SearchRecipe />} />
