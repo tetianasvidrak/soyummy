@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { getMainRecipes } from "../../api/get-main-recipes";
 
@@ -18,6 +19,8 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [isTryAgainClicked, setIsTryAgainClicked] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setLoading(true);
     setError(null);
@@ -30,7 +33,7 @@ const Home = () => {
   }, [isTryAgainClicked]);
 
   const onChangeSearchRecipeHandler = (recipe) => {
-    console.log(recipe);
+    navigate(`/searchrecipe?q=${recipe}`);
   };
 
   return (
