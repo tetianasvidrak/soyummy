@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const axiosBaseUrl = process.env.AXIOS_BASE_URL;
+const axiosBaseUrl = import.meta.env.VITE_AXIOS_BASE_URL;
+
+console.log(axiosBaseUrl);
 
 axios.defaults.baseURL = axiosBaseUrl;
 

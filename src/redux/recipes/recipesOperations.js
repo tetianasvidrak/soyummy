@@ -1,5 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getFavoriteRecipes } from "./recipes-api";
+import {
+  deleteOwnRecipe,
+  fetchOwnRecipe,
+  getFavoriteRecipes,
+  getOwnRecipes,
+} from "./recipes-api";
 
 export const ownRecipe = createAsyncThunk(
   "recipes/ownRecipe",

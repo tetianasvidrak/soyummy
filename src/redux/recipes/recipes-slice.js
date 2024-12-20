@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { favoriteRecipes, ownRecipe } from "./recipesOperations";
+import {
+  favoriteRecipes,
+  ownRecipe,
+  deleteMyRecipe,
+  getMyRecipes,
+} from "./recipesOperations";
 
 const initialState = {
   recipes: null,
