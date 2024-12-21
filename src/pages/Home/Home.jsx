@@ -12,6 +12,9 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import Icon from "../../components/Icon/Icon";
 
 import bgDish from "../../assets/bgHomePlate.png";
+import bgLeft from "../../assets/bgHomeLeavesLeft.png";
+import bgRight from "../../assets/bgHomeLeavesRight.png";
+import bgArrowPlate from "../../assets/bgArrowPlate.svg";
 
 const Home = () => {
   const [recipes, setRecipes] = useState();
@@ -38,7 +41,10 @@ const Home = () => {
 
   return (
     <>
-      <div className="absolute -mt-16 w-full h-screen overflow-hidden bg-no-repeat bg-auto bg-[url('./assets/bgHomeLeavesLeft.png'),_url('./assets/bgHomeLeavesRight.png')] bg-[position:left_top,_right_bottom]"></div>
+      <div
+        className="absolute -mt-16 w-full h-screen overflow-hidden bg-no-repeat bg-auto bg-[position:left_top,_right_bottom]"
+        style={{ backgroundImage: `url(${bgLeft}), url(${bgRight})` }}
+      ></div>
       <Container>
         <div className="mt-[-62px] flex items-center justify-between h-screen">
           <div className="flex flex-col gap-12 w-[510px]">
@@ -83,7 +89,10 @@ const Home = () => {
                 />
               </NavLink>
             </div>
-            <span className="absolute -bottom-40 right-0  bg-[url('./assets/bgArrowPlate.svg')] bg-right-top bg-no-repeat bg-auto h-64 w-64"></span>
+            <span
+              className="absolute -bottom-40 right-0 bg-right-top bg-no-repeat bg-auto h-64 w-64"
+              style={{ backgroundImage: `url(${bgArrowPlate})` }}
+            ></span>
           </div>
         </div>
 

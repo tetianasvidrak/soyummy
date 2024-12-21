@@ -22,6 +22,8 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import RecipePreparation from "../../components/RecipePreparation/RecipePrepation";
 import Icon from "../../components/Icon";
 
+import bgRecipe from "../../assets/bgRecipe.png";
+
 const Recipe = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -57,7 +59,10 @@ const Recipe = () => {
         </Modal>
       ) : (
         <div className="mt-[-62px]">
-          <div className="pt-[62px] h-full bg-no-repeat bg-cover bg-bottom bg-[url('./assets/bgRecipe.png')]">
+          <div
+            className="pt-[62px] h-full bg-no-repeat bg-cover bg-bottom"
+            style={{ backgroundImage: `url(${bgRecipe})` }}
+          >
             <div className="flex flex-col justify-center items-center mt-[164px]">
               <h1 className="text-green mb-[24px] font-semibold text-[44px]">
                 {recipe?.title}

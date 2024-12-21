@@ -1,10 +1,14 @@
 import { NavLink } from "react-router-dom";
 
 import logo from "../../assets/icons/logo.svg";
+import welcomeBg from "../../assets/welcomeBg.png";
 
 const Welcome = () => {
   return (
-    <div className="flex items-center justify-center h-screen  bg-no-repeat bg-cover bg-bottom bg-[url('./assets/welcomeBg.png')]">
+    <div
+      className="flex items-center justify-center h-screen  bg-no-repeat bg-cover bg-bottom"
+      style={{ backgroundImage: `url(${welcomeBg})` }}
+    >
       <div className="flex flex-col items-center w-[544px]">
         <img className="w-[68px] mb-[44px]" src={logo} />
         <div className="flex flex-col items-center gap-[14px] mb-[62px] text-white">

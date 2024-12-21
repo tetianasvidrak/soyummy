@@ -7,6 +7,7 @@ import * as authOperations from "../../redux/auth/authOperations";
 import AuthForm from "../../components/AuthForm";
 
 import signUpImg from "../../assets/signUpImg.png";
+import bgAuthFloor from "../../assets/bgAuthFloor.svg";
 
 const SignIn = () => {
   const [signInData, setSignInData] = useState({
@@ -36,7 +37,10 @@ const SignIn = () => {
             </Link>
           </div>
         </div>
-        <div className="absolute bottom-0 z-0 h-[380px] w-full bg-cover bg-[url('./assets/bgAuthFloor.svg')]"></div>
+        <div
+          className="absolute bottom-0 z-0 h-[380px] w-full bg-cover"
+          style={{ backgroundImage: `url(${bgAuthFloor})` }}
+        ></div>
       </div>
       {isLoggedIn && <Navigate to="/" />}
     </>

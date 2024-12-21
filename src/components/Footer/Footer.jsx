@@ -8,6 +8,9 @@ import Container from "../Container/Container";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import Logo from "../../components/Logo/Logo";
 
+import bgLeavesBottom from "../../assets/bgLeavesBottom.png";
+import footerLeaves from "../../assets/footerLeaves.png";
+
 const Footer = () => {
   const { isDarkMode } = useSelector((state) => state.darkMode);
   const { register, handleSubmit } = useForm();
@@ -18,7 +21,12 @@ const Footer = () => {
 
   return (
     <footer className="relative">
-      <div className="absolute w-full z-10 overflow-visible bg-no-repeat bg-auto bg-[url('./assets/bgLeavesBottom.png'),_url('./assets/footerLeaves.png')] bg-[position:left_bottom_15px,_right] bg-footerBg dark:bg-green">
+      <div
+        className="absolute w-full z-10 overflow-visible bg-no-repeat bg-auto bg-[position:left_bottom_15px,_right] bg-footerBg dark:bg-green"
+        style={{
+          backgroundImage: `url(${bgLeavesBottom}), url(${footerLeaves})`,
+        }}
+      >
         <Container>
           <div className="flex justify-between text-white pt-16 pb-28">
             <div>
